@@ -18,3 +18,5 @@ wget
 asdf
 ableton-live-lite
 guitar-pro
+gpg
+gawk
