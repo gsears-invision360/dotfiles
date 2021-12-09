@@ -61,6 +61,16 @@ ZSH_THEME="agnoster"
 plugins=(
   git
   zsh-syntax-highlighting
+  docker
+  docker-compose
+  brew
+  asdf
+  yarn
+  npm
+  npx
+  node
+  vscode
+  zsh-interactive-cd
 )
 
 # zsh-syntax-highlighting
@@ -102,3 +112,7 @@ source ${ZSH}/oh-my-zsh.sh
 autoload -U compinit && compinit
 
 [[ -f ~/.fzf.zsh ]] && source ~/.fzf.zsh
+
+# ASDP
+ASDF_DIR="$(brew --prefix asdf)/libexec"
+. "$ASDF_DIR/asdf.sh"
