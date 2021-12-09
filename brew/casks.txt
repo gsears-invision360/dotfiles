@@ -17,3 +17,4 @@ ilok-license-manager
 wget
 asdf
 ableton-live-lite
+guitar-pro
