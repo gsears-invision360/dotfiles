@@ -110,6 +110,9 @@ autoload -U compinit && compinit
 
 [[ -f ~/.fzf.zsh ]] && source ~/.fzf.zsh
 
-# ASDP
+# asdf
 ASDF_DIR="$(brew --prefix asdf)/libexec"
 . "$ASDF_DIR/asdf.sh"
+
+# java
+. ~/.asdf/plugins/java/set-java-home.zsh
