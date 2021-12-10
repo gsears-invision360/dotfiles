@@ -20,3 +20,6 @@ ableton-live-lite
 guitar-pro
 gpg
 gawk
+fzf
+microsoft-teams
+font-fira-code
