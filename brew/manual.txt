@@ -1,2 +1,6 @@
 Manual Download & install:
 --------------------------
+
+brew tap homebrew/cask-fonts
+brew install --cask font-fira-code
+https://github.com/tonsky/FiraCode/wiki/Installing
