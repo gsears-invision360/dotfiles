@@ -23,3 +23,5 @@ gawk
 fzf
 microsoft-teams
 font-fira-code
+vlc
+waves-central
