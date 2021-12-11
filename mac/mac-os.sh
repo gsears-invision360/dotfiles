@@ -42,6 +42,9 @@ finder() {
   ### Finder: show path bar
   defaults write com.apple.finder ShowPathbar -bool true
   echo -e "Finder settings override... Done."
+
+  # Show the ~/Library folder
+  chflags nohidden ~/Library && xattr -d com.apple.FinderInfo ~/Library
 }
 
 keyboard() {
@@ -87,6 +90,29 @@ verify_pre_install() {
   fi
 }
 
+screen() {
+  echo -e "\nScreen settings override..."
+  # Save screenshots to the desktop
+  defaults write com.apple.screencapture location -string "${HOME}/Desktop"
+
+  # Save screenshots in PNG format (other options: BMP, GIF, JPG, PDF, TIFF)
+  defaults write com.apple.screencapture type -string "png"
+
+  # Disable shadow in screenshots
+  defaults write com.apple.screencapture disable-shadow -bool true
+
+  echo -e "Screen settings override... Done."
+}
+
+dock() {
+  echo -e "\nDock settings override..."
+  # Automatically hide and show the Dock
+  defaults write com.apple.dock autohide -bool true
+  # Automatically hide and show the Dock
+  defaults write com.apple.dock autohide -bool true
+  echo -e "Dock settings override... Done."
+}
+
 main() {
   print_banner
   verify_pre_install
@@ -96,6 +122,8 @@ main() {
   keyboard
   hidden_files_and_folders
   activity_monitor
+  screen
+  dock
 
   # Kill all Finder to apply some settings
   Killall Finder
