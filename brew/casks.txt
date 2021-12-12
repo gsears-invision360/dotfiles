@@ -25,3 +25,4 @@ microsoft-teams
 font-fira-code
 vlc
 waves-central
+steam
