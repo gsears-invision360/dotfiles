@@ -18,6 +18,7 @@ microsoft-teams
 muzzle
 postman
 rectangle
+serverless
 slack
 spotify
 steam
@@ -28,3 +29,5 @@ waves-central
 wget
 whatsapp
 zoom
+loom
+todoist
