@@ -32,3 +32,4 @@ zoom
 loom
 todoist
 openaudible
+dbeaver-community
