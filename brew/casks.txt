@@ -33,3 +33,4 @@ loom
 todoist
 openaudible
 dbeaver-community
+cmake
