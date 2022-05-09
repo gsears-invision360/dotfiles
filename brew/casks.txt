@@ -34,3 +34,4 @@ todoist
 openaudible
 dbeaver-community
 cmake
+gh
