@@ -35,3 +35,4 @@ openaudible
 dbeaver-community
 cmake
 gh
+graphviz
