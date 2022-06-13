@@ -36,3 +36,4 @@ dbeaver-community
 cmake
 gh
 graphviz
+awscli
