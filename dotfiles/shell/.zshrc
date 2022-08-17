@@ -116,3 +116,13 @@ ASDF_DIR="$(brew --prefix asdf)/libexec"
 
 # java
 . ~/.asdf/plugins/java/set-java-home.zsh
+
+# android
+
+ANDROID_HOME="${HOME}/Library/Android/sdk"
+# bun completions
+[ -s "/Users/gareth/.bun/_bun" ] && source "/Users/gareth/.bun/_bun"
+
+# Bun
+export BUN_INSTALL="/Users/gareth/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
