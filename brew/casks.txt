@@ -37,3 +37,5 @@ cmake
 gh
 graphviz
 awscli
+android-studio
+karabiner-elements
