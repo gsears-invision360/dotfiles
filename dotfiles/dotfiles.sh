@@ -25,8 +25,8 @@ install_dotfiles() {
 }
 
 _symlink_config_in_dotfiles_dir() {
-  ln -sfn ${PWD}/config.sh ${DOTFILES_HOME_DIR}/.config
-  echo -e "\nConfig:\n  ${DOTFILES_HOME_DIR}/.config --> ${PWD}/config.sh"
+  ln -sfn ${PWD}/config.sh ${DOTFILES_HOME_DIR}/.dotfiles-config
+  echo -e "\nConfig:\n  ${DOTFILES_HOME_DIR}/.dotfiles-config --> ${PWD}/config.sh"
 }
 
 _symlink_shells_in_home_dir() {
@@ -112,8 +112,8 @@ uninstall_dotfiles() {
 }
 
 _unlink_config_in_dotfiles_dir() {
-  unlink ${DOTFILES_HOME_DIR}/.config 2>/dev/null
-  echo -e "\nConfig:\n  ${DOTFILES_HOME_DIR}/.config --> removed."
+  unlink ${DOTFILES_HOME_DIR}/.dotfiles-config 2>/dev/null
+  echo -e "\nConfig:\n  ${DOTFILES_HOME_DIR}/.dotfiles-config --> removed."
 }
 
 _unlink_shells_in_home_dir() {
