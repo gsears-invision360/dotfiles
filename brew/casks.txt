@@ -39,3 +39,4 @@ graphviz
 awscli
 android-studio
 karabiner-elements
+neovim
