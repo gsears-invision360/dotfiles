@@ -21,7 +21,6 @@ add_asdf_packages() {
     asdf plugin-add java https://github.com/halcyon/asdf-java.git
     asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git
     asdf plugin-add yarn
-    asdf plugin add neovim
     echo -e "\nAdding packages... Done."
 }
 
