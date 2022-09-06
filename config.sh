@@ -10,7 +10,7 @@ export CODEBASE=${HOME}/codebase
 
 # Description  ENV var dotfiles repository path (+alias)
 # ======================================================
-export DOTFILES_REPO=${CODEBASE}/github/dotfiles
+export DOTFILES_REPO=${CODEBASE}/dotfiles
 alias dotfiles=${DOTFILES_REPO}
 
 # Description  ENV var specifying environmental settings e.g. Go, JDK etc..
