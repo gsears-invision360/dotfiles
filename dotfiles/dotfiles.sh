@@ -29,6 +29,11 @@ _symlink_config_in_dotfiles_dir() {
   echo -e "\nConfig:\n  ${DOTFILES_HOME_DIR}/.dotfiles-config --> ${PWD}/config.sh"
 }
 
+_symlink_config_folder_in_dir() {
+  ln -s ${PWD}/dotfiles/config ${HOME}/.config
+  echo -e "\nConfig:\n  ${HOME}/.config --> ${PWD}/config"
+}
+
 _symlink_shells_in_home_dir() {
   local output=""
   local DOT_FILES_TO_INSTALL_IN_HOME_DIR=$(find $(PWD)/dotfiles/shell -name ".*")
