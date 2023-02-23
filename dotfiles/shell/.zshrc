@@ -68,6 +68,9 @@ plugins=(
   npm
   node
   vscode
+  zsh-vi-mode
+  terraform
+  fzf
 )
 
 # zsh-syntax-highlighting
@@ -111,8 +114,10 @@ autoload -U compinit && compinit
 [[ -f ~/.fzf.zsh ]] && source ~/.fzf.zsh
 
 # asdf
-ASDF_DIR="$(brew --prefix asdf)/libexec"
-. "$ASDF_DIR/asdf.sh"
+. $HOME/.asdf/asdf.sh
+
+# check asdf shims first before brew
+alias brew='env PATH="${PATH//.asdf/shims:/}" brew'
 
 # java
 . ~/.asdf/plugins/java/set-java-home.zsh
@@ -126,3 +131,4 @@ ANDROID_HOME="${HOME}/Library/Android/sdk"
 # Bun
 export BUN_INSTALL="/Users/gareth/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
+

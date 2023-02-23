@@ -65,6 +65,8 @@ install_homebrew_taps() {
   # cask-versions enable us to search supported versions by providing a cask name:
   #   - brew search <cask name>
   brew tap homebrew/cask-versions
+  brew tap microsoft/git
+  brew tap hashicorp/tap
 }
 
 keep_brew_up_to_date() {
@@ -154,6 +156,9 @@ main() {
   # Assuming this script was executed via makefile
   source brew/shell/oh-my-zsh-install.sh
   oh_my_zsh_setup_install
+  
+  # fzf promps and keybindings
+  $(brew --prefix)/opt/fzf/install
 }
 
 main "$@"

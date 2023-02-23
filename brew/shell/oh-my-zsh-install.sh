@@ -143,5 +143,16 @@ Installing Plugin: zsh-syntax-highlighting
     echo "  Already installed."
   fi
 
+  echo -e "
+==================
+Installing Plugin: zsh-vi-mode
+// https://github.com/jeffreytse/zsh-vi-mode
+==================
+"
+  if [[ ! -d "${HOME}/.oh-my-zsh/custom/plugins/zsh-vi-mode" ]]; then
+    git clone https://github.com/jeffreytse/zsh-vi-mode ${HOME}/.oh-my-zsh/custom/plugins/zsh-vi-mode
+  else
+    echo "  Already installed."
+  fi
+
   _oh_my_zsh_setup_shell
-}

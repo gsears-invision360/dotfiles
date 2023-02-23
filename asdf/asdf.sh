@@ -25,13 +25,27 @@ add_asdf_packages() {
 }
 
 install_asdf() {
+
+    # Install from git because has issues with brew install
+    brew deps asdf | xargs -L1 brew install
+   
     echo -e "\nInstalling asdf..."
-    brew install asdf
+    git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.10.2
+
+   
+
+    #  chmod +x ~/.asdf/asdf.sh
     source ~/.zshrc
+  
     add_asdf_packages
     asdf install
     echo -e "Installing asdf... Done."
 }
+
+# TODO: Auto install versions for node yarn etc
+# asdf install java openjdk-18
+# asdf install nodejs lts-gallium
+# 
 
 main() {
     print_banner

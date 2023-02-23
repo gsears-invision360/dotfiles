@@ -1,5 +1,5 @@
 # 14.18.2
-nodejs lts-fermium
-yarn 1.22.17
+nodejs lts-gallium
+yarn 1.22.19
 neovim 0.6.0
-java openjdk-17.0.1
+java openjdk-18

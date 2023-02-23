@@ -1,5 +1,3 @@
-ableton-live-lite
-asdf
 bitwarden
 bitwarden-cli
 discord
@@ -40,3 +38,6 @@ awscli
 android-studio
 karabiner-elements
 neovim
+anaconda
+git-credential-manager-core
+hashicorp/tap/terraform
