@@ -1,4 +1,4 @@
-nodejs lts-gallium
+nodejs lts-iron
 yarn 1.22.19
 neovim 0.6.0
 dotnet 8.0.204
