@@ -132,3 +132,9 @@ ANDROID_HOME="${HOME}/Library/Android/sdk"
 export BUN_INSTALL="/Users/gareth/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 
+# Add dotnet resolvers for asdf
+# version=`asdf current dotnet | awk '{print $2}'`
+# echo "Parsed version: $version"
+# export DOTNET_MSBUILD_SDK_RESOLVER_SDKS_DIR=$(echo $HOME/.asdf/installs/dotnet/$version/sdk/$version/Sdks)
+# export DOTNET_MSBUILD_SDK_RESOLVER_SDKS_VER=$version
+# export DOTNET_MSBUILD_SDK_RESOLVER_CLI_DIR=$(echo $HOME/.asdf/installs/dotnet/$version)

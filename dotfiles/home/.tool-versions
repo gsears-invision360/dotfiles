@@ -1,5 +1,5 @@
 nodejs lts-iron
 yarn 1.22.19
-neovim 0.6.0
-dotnet 8.0.204
-java openjdk-18
+neovim 0.10.1
+java openjdk-18python 2.7.18
+python 2.7.18
