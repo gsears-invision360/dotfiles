@@ -24,6 +24,7 @@ reload_dot_files() {
 }
 
 _reload_managed_files_inner() {
+  mkdir -p ${DOTFILES_REPO}/dotfiles/managed
   for file in $(find ${DOTFILES_REPO}/dotfiles/managed -name ".*"); do
 #    echo "${file}"
     source ${file}
@@ -31,6 +32,7 @@ _reload_managed_files_inner() {
 }
 
 _reload_transient_files() {
+  mkdir -p ${DOTFILES_REPO}/dotfiles/transient
   for file in $(find ${DOTFILES_REPO}/dotfiles/transient -name ".*"); do
 #    echo "${file}"
     source ${file}
@@ -38,6 +40,7 @@ _reload_transient_files() {
 }
 
 _reload_custom_files_inner() {
+   mkdir -p ${DOTFILES_REPO}/dotfiles/custom
   for file in $(find ${DOTFILES_REPO}/dotfiles/custom -name ".*"); do
 #    echo "${file}"
     source ${file}

@@ -1,5 +1,6 @@
-nodejs lts-iron
+nodejs 22.18.0
 yarn 1.22.19
 neovim 0.10.1
+java openjdk-17.0.1
 java openjdk-18python 2.7.18
 python 2.7.18

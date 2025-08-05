@@ -68,7 +68,6 @@ plugins=(
   npm
   node
   vscode
-  zsh-vi-mode
   terraform
   fzf
 )
@@ -114,7 +113,7 @@ autoload -U compinit && compinit
 [[ -f ~/.fzf.zsh ]] && source ~/.fzf.zsh
 
 # asdf
-. $HOME/.asdf/asdf.sh
+# . $HOME/.asdf/asdf.sh
 
 # check asdf shims first before brew
 alias brew='env PATH="${PATH//.asdf/shims:/}" brew'
@@ -138,3 +137,9 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 # export DOTNET_MSBUILD_SDK_RESOLVER_SDKS_DIR=$(echo $HOME/.asdf/installs/dotnet/$version/sdk/$version/Sdks)
 # export DOTNET_MSBUILD_SDK_RESOLVER_SDKS_VER=$version
 # export DOTNET_MSBUILD_SDK_RESOLVER_CLI_DIR=$(echo $HOME/.asdf/installs/dotnet/$version)
+
+. /usr/local/opt/asdf/libexec/asdf.sh
+export JAVA_HOME=/Library/Java/JavaVirtualMachines/microsoft-11.jdk/Contents/Home
+export PATH=$JAVA_HOME/bin:$PATH
+export JAVA_HOME=/Library/Java/JavaVirtualMachines/microsoft-11.jdk/Contents/Home
+export PATH=$JAVA_HOME/bin:$PATH

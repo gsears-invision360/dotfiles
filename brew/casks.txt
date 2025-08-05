@@ -16,11 +16,7 @@ microsoft-teams
 muzzle
 postman
 rectangle
-serverless
-slack
-spotify
 steam
-telegram
 visual-studio-code
 vlc
 waves-central
@@ -41,3 +37,4 @@ neovim
 anaconda
 git-credential-manager-core
 hashicorp/tap/terraform
+notion
