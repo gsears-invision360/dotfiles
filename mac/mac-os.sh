@@ -1,9 +1,5 @@
 #!/bin/bash
 
-# Title        mac-os.sh
-# Description  Customize macOS default settings and change key bindings
-# Author       Zachi Nachshon <zachi.nachshon@gmail.com>
-#==============================================================================
 print_banner() {
   echo -e "
 ███╗   ███╗ █████╗  ██████╗               ██████╗ ███████╗
@@ -44,7 +40,8 @@ finder() {
   echo -e "Finder settings override... Done."
 
   # Show the ~/Library folder
-  chflags nohidden ~/Library && xattr -d com.apple.FinderInfo ~/Library
+
+  # chflags nohidden ~/Library && xattr -d com.apple.FinderInfo ~/Library
 }
 
 keyboard() {
@@ -66,7 +63,7 @@ hidden_files_and_folders() {
   chflags nohidden ~/Library && xattr -d com.apple.FinderInfo ~/Library
 
   # Show the /Volumes folder
-  sudo chflags nohidden /Volumes
+  # sudo chflags nohidden /Volumes
   echo -e "Hidden files & folders settings override... Done."
 }
 
@@ -129,6 +126,7 @@ main() {
   Killall Finder
 
   echo -e "\nRestart is required !\n"
+  echo -e "To bind capslock to escape (and other modifier keys) remember to modify in System Settings\n"
 }
 
 main "$@"

@@ -6,7 +6,7 @@ export DOTFILES_HOME_DIR=${HOME}/.dotfiles
 
 # Description  ENV var specifying codebase root folder
 # ====================================================
-export CODEBASE=${HOME}/codebase
+export CODEBASE=${HOME}/Code
 
 # Description  ENV var dotfiles repository path (+alias)
 # ======================================================

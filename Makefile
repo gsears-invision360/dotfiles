@@ -17,7 +17,7 @@ asdf: ## Install ASDF plugins
 	-@$(CURDIR)/asdf/asdf.sh
 
 .PHONY: all
-all: mac dotfiles brew asdf  ## Execute `mac`, `dotfiles` and `brew` in this order
+all: mac dotfiles brew asdf  ## Execute `mac`, `dotfiles`, `brew` and `asdf` in this order
 
 .PHONY: help
 help:

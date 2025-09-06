@@ -15,18 +15,25 @@ Additionally, this repository contains:
 
 - [Homebrew](https://github.com/Homebrew/brew) installation script for common [packages and casks](brew) that I use
 - macOS custom KeyBindings, Finder customizations, keyboard preferences and other overrides
+- [ASDF](https://asdf-vm.com/) installation script for managing runtime versions of key software (node, python, ... like `nvm` but universal and on steroids)
 
 <br>
 
 ## Getting Started
+In general, this `dotfiles` repo is expected to be located in the `$CODEBASE` PATH, which is defined in `config.sh`. From there symlinks are made.
+
+This can be customised to wherever makes sense for your project...
 
 List of available `make` commands:
 
 1. `dotfiles` - create/remove dotfiles symlinks to/from this repo
-1. `brew` - (_optional_) install commonly used Homebrew [packages and casks](brew)
-1. `mac` - (_optional_) macOS custom KeyBindings, Finder customizations, keyboard preferences and other overrides
-1. `all` - (_optional_) execute `mac`, `dotfiles` and `brew` in this order
-1. `help` - (_optional_) get available actions
+2. `brew` - (_optional_) install commonly used Homebrew [packages and casks](brew)
+3. `mac` - (_optional_) macOS custom KeyBindings, Finder customizations, keyboard preferences and other overrides
+4. `asdf` - (_optional_) download plugins and install the global `.tool-versions` (in dotfiles)
+4. `all` - (_optional_) execute `mac`, `dotfiles`, `brew` and `asdf` in this order
+5. `help` - (_optional_) get available actions
+
+This is a work in progress, so if something fails, try rerunning the script (as the PATH may be updated). Alternatively, investigate and suggest a PR!
 
 <br>
 
@@ -105,4 +112,4 @@ You can use this to export ENV vars with sensitive information such as secrets t
 </details>
 <br>
 
-<sup><b>Credits: </b><a href=https://github.com/jglovier/dotfiles-logo>Logo</a> created by <a href=https://github.com/jglovier>Joel Glovier</a></sup>
+<sup><b>Credits: </b><a href=https://github.com/jglovier/dotfiles-logo>Logo</a> created originally by <a href=https://github.com/jglovier>Joel Glovier</a></sup>

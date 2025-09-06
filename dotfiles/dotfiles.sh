@@ -1,9 +1,4 @@
 #!/bin/bash
-
-# Title        dotfiles.sh
-# Description  Create or remove symlinks for this repository
-# Author       Zachi Nachshon <zachi.nachshon@gmail.com>
-#==============================================================================
 print_banner() {
   echo -e "
 ██████╗  ██████╗ ████████╗███████╗██╗██╗     ███████╗███████╗
@@ -109,7 +104,7 @@ uninstall_dotfiles() {
   _unlink_shells_in_home_dir
   _unlink_managed_files_in_dotfiles_dir
   _unlink_custom_files_in_dotfiles_dir
-
+ 
   if [[ ${DOTFILES_HOME_DIR} != ${HOME} && -d ${DOTFILES_HOME_DIR} && ${DOTFILES_HOME_DIR} == *"dotfiles"* ]]; then
     rm -r ${DOTFILES_HOME_DIR}
     output+="\nCleanup:\n  ${DOTFILES_HOME_DIR} --> removed."
@@ -199,6 +194,10 @@ run_dotfiles_action() {
 
 print_selection() {
   echo -e "Manage dotfiles symlinks in folder - ${DOTFILES_HOME_DIR}
+
+  Note: 
+  Assumes the this dotfiles repository was cloned to ${DOTFILES_REPO}
+  (edit this config in ${DOTFILES_REPO}/config.sh)
 
   1. Create symlinks for dotfiles, shell scripts and transient content
   2. Remove all symlinks created by this script

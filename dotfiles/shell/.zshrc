@@ -1,5 +1,3 @@
-#!/bin/bash
-
 ###########################################################################
 #                             Load .dotfiles
 ###########################################################################
@@ -112,34 +110,7 @@ autoload -U compinit && compinit
 
 [[ -f ~/.fzf.zsh ]] && source ~/.fzf.zsh
 
-# asdf
-# . $HOME/.asdf/asdf.sh
+export SSL_CERT_FILE="/Users/g.sears/Applications/Homebrew/etc/ca-certificates/cert.pem"
 
-# check asdf shims first before brew
-alias brew='env PATH="${PATH//.asdf/shims:/}" brew'
-
-# java
-. ~/.asdf/plugins/java/set-java-home.zsh
-
-# android
-
-ANDROID_HOME="${HOME}/Library/Android/sdk"
-# bun completions
-[ -s "/Users/gareth/.bun/_bun" ] && source "/Users/gareth/.bun/_bun"
-
-# Bun
-export BUN_INSTALL="/Users/gareth/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
-
-# Add dotnet resolvers for asdf
-# version=`asdf current dotnet | awk '{print $2}'`
-# echo "Parsed version: $version"
-# export DOTNET_MSBUILD_SDK_RESOLVER_SDKS_DIR=$(echo $HOME/.asdf/installs/dotnet/$version/sdk/$version/Sdks)
-# export DOTNET_MSBUILD_SDK_RESOLVER_SDKS_VER=$version
-# export DOTNET_MSBUILD_SDK_RESOLVER_CLI_DIR=$(echo $HOME/.asdf/installs/dotnet/$version)
-
-. /usr/local/opt/asdf/libexec/asdf.sh
-export JAVA_HOME=/Library/Java/JavaVirtualMachines/microsoft-11.jdk/Contents/Home
-export PATH=$JAVA_HOME/bin:$PATH
-export JAVA_HOME=/Library/Java/JavaVirtualMachines/microsoft-11.jdk/Contents/Home
-export PATH=$JAVA_HOME/bin:$PATH
+export SSL_CERT_FILE="/Users/g.sears/Applications/Homebrew/etc/ca-certificates/cert.pem"
+export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"

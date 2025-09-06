@@ -1,9 +1,3 @@
-#!/bin/bash
-
-# Title        brew.sh
-# Description  Install/upgrade Homebrew packages and casks
-# Author       Zachi Nachshon <zachi.nachshon@gmail.com>
-#==============================================================================
 print_banner() {
   echo -e "
 ██╗  ██╗ ██████╗ ███╗   ███╗███████╗██████╗ ██████╗ ███████╗██╗    ██╗
@@ -50,11 +44,17 @@ install_homebrew() {
                          Installing Homebrew
 =======================================================================
 "
-  if [[ ! -d "/usr/local/Homebrew" ]]; then
-    echo "==> Installing..."
-    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-    echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> "$HOME/.zprofile"
-    eval "$(/opt/homebrew/bin/brew shellenv)"
+  if [[ ! -d "$HOME/Applications/Homebrew" ]]; then
+    echo "==> Installing to ~/Applications/Homebrew..."
+    export HOMEBREW_CASK_OPTS="--appdir=$HOME/Applications"
+    mkdir -p $HOME/Applications/Homebrew
+    /bin/bash -c "$(curl -L https://github.com/Homebrew/brew/tarball/master | tar xz --strip 1 -C $HOME/Applications/Homebrew)"
+
+    echo "==> Adding Homebrew to PATH..."
+    echo 'eval "$(~/Applications/Homebrew/bin/brew shellenv)"' >> "$HOME/.zprofile"
+
+    echo 'export HOMEBREW_CASK_OPTS="--appdir=~/Applications"' >> ~/.zprofile
+    eval "$($HOME/Applications/Homebrew/bin/brew shellenv)"
   else
     echo "==> Already installed."
   fi
@@ -62,11 +62,10 @@ install_homebrew() {
 
 install_homebrew_taps() {
   echo -e "Tapping to homebrew taps...\n"§
-  # cask-versions enable us to search supported versions by providing a cask name:
-  #   - brew search <cask name>
-  brew tap homebrew/cask-versions
-  brew tap microsoft/git
-  brew tap hashicorp/tap
+  # Additional taps here: 
+  # e.g.
+  # brew tap microsoft/git
+  # brew tap hashicorp/tap
 }
 
 keep_brew_up_to_date() {
@@ -79,6 +78,15 @@ keep_brew_up_to_date() {
   brew upgrade
 }
 
+_is_comment_or_empty() {
+  local line="$1"
+  case "$line" in
+    ''|\#*) return 0 ;;
+    *) return 1 ;;
+  esac
+}
+
+
 install_packages() {
   echo -e "
 =======================================================================
@@ -86,14 +94,20 @@ install_packages() {
 ======================================================================="
 
   packages_filename='brew/packages.txt'
+  
   while read pkg; do
-    # reading each line
+      _is_comment_or_empty "$pkg" && continue
+
     echo -e "
 ===================
 Installing Package: ${pkg}
 ===================
 "
-    brew install ${pkg}
+    # Note, non-interfactively install to avoid stdin issues
+    # when called in a loop (from hijacking the packages.txt input)
+    # If interaction is needed, remove the redirection... but shouldn't be
+    # because it should be an automated install.
+    brew install ${pkg} </dev/null
 
   done < ${packages_filename}
 }
@@ -112,6 +126,8 @@ install_casks() {
 
   casks_filename='brew/casks.txt'
   while read cask; do
+  # Skip comments and empty lines
+    _is_comment_or_empty "$cask" && continue
     # reading each line
     echo -e "
 ================
@@ -154,11 +170,26 @@ main() {
   list_all
 
   # Assuming this script was executed via makefile
+  echo -e "
+====================
+Setting up Oh My Zsh
+===================="
   source brew/shell/oh-my-zsh-install.sh
   oh_my_zsh_setup_install
   
   # fzf promps and keybindings
-  $(brew --prefix)/opt/fzf/install
+  yes | $(brew --prefix fzf)/install
+
+
+# Add cert files from homebrew for OpenSSL using tools like curl, wget, asdf etc
+  echo -e "
+====================
+Setting up CA Certs
+===================="
+
+  CERT=$(find "$(brew --prefix)" -type f -name cert.pem | head -n1)
+  export SSL_CERT_FILE="$CERT"
+  echo "export SSL_CERT_FILE=\"$CERT\"" >> ~/.zshrc
 }
 
 main "$@"

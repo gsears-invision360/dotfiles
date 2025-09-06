@@ -128,7 +128,31 @@ oh_my_zsh_setup_install() {
 Installing: oh-my-zsh
 ===========
 "
-  wget -O /tmp/install.sh https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh
+  # Prefer curl (uses macOS trust store) and use the official ohmyzsh repo.
+  # Fallback to wget, and only use --no-check-certificate as a last resort.
+  if command -v curl >/dev/null 2>&1; then
+    curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh -o /tmp/install.sh || {
+      echo "[WARN] curl failed to fetch installer; trying wget fallback"
+      if command -v wget >/dev/null 2>&1; then
+        wget -O /tmp/install.sh https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh || {
+          echo "[WARN] wget failed; retrying wget without certificate check"
+          wget --no-check-certificate -O /tmp/install.sh https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh || { echo "[ERROR] failed to download installer"; return; }
+        }
+      else
+        echo "[ERROR] curl failed and wget not available; aborting."
+        return
+      fi
+    }
+  elif command -v wget >/dev/null 2>&1; then
+    wget -O /tmp/install.sh https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh || {
+      echo "[WARN] wget failed to verify certificate; retrying insecurely"
+      wget --no-check-certificate -O /tmp/install.sh https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh || { echo "[ERROR] failed to download installer"; return; }
+    }
+  else
+    echo "[ERROR] curl or wget not found; please install one and retry."
+    return
+  fi
+
   # --unattended: installer will not change the default shell or run zsh after the install
   sh /tmp/install.sh --unattended
 
@@ -143,16 +167,5 @@ Installing Plugin: zsh-syntax-highlighting
     echo "  Already installed."
   fi
 
-  echo -e "
-==================
-Installing Plugin: zsh-vi-mode
-// https://github.com/jeffreytse/zsh-vi-mode
-==================
-"
-  if [[ ! -d "${HOME}/.oh-my-zsh/custom/plugins/zsh-vi-mode" ]]; then
-    git clone https://github.com/jeffreytse/zsh-vi-mode ${HOME}/.oh-my-zsh/custom/plugins/zsh-vi-mode
-  else
-    echo "  Already installed."
-  fi
-
   _oh_my_zsh_setup_shell
+}
