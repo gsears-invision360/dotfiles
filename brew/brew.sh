@@ -51,9 +51,13 @@ install_homebrew() {
     /bin/bash -c "$(curl -L https://github.com/Homebrew/brew/tarball/master | tar xz --strip 1 -C $HOME/Applications/Homebrew)"
 
     echo "==> Adding Homebrew to PATH..."
-    echo 'eval "$(~/Applications/Homebrew/bin/brew shellenv)"' >> "$HOME/.zprofile"
+    if ! grep -q 'eval "$(~/Applications/Homebrew/bin/brew shellenv)"' "$HOME/.zprofile" 2>/dev/null; then
+      echo 'eval "$(~/Applications/Homebrew/bin/brew shellenv)"' >> "$HOME/.zprofile"
+    fi
 
-    echo 'export HOMEBREW_CASK_OPTS="--appdir=~/Applications"' >> ~/.zprofile
+    if ! grep -q 'export HOMEBREW_CASK_OPTS="--appdir=~/Applications"' ~/.zprofile 2>/dev/null; then
+      echo 'export HOMEBREW_CASK_OPTS="--appdir=~/Applications"' >> ~/.zprofile
+    fi
     eval "$($HOME/Applications/Homebrew/bin/brew shellenv)"
   else
     echo "==> Already installed."
@@ -189,7 +193,9 @@ Setting up CA Certs
 
   CERT=$(find "$(brew --prefix)" -type f -name cert.pem | head -n1)
   export SSL_CERT_FILE="$CERT"
-  echo "export SSL_CERT_FILE=\"$CERT\"" >> ~/.zshrc
+  if ! grep -q "export SSL_CERT_FILE=\"$CERT\"" ~/.zshrc 2>/dev/null; then
+    echo "export SSL_CERT_FILE=\"$CERT\"" >> ~/.zshrc
+  fi
 }
 
 main "$@"
