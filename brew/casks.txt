@@ -1,3 +1,6 @@
+# team
+slack
+
 # development
 visual-studio-code
 dbeaver-community
