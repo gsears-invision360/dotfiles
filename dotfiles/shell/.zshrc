@@ -6,6 +6,8 @@ source ${DOTFILES_REPO}/config.sh
 reload_dot_files
 ###########################################################################
 
+[[ -f ~/.fzf.zsh ]] && source ~/.fzf.zsh
+
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
@@ -107,10 +109,6 @@ fi
 
 # Used for anchor auto completion - load /usr/local/share/zsh/site-functions/_anchor
 autoload -U compinit && compinit
-
-[[ -f ~/.fzf.zsh ]] && source ~/.fzf.zsh
-
-export SSL_CERT_FILE="/Users/g.sears/Applications/Homebrew/etc/ca-certificates/cert.pem"
 
 export SSL_CERT_FILE="/Users/g.sears/Applications/Homebrew/etc/ca-certificates/cert.pem"
 export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
