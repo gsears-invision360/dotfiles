@@ -20,7 +20,17 @@ add_asdf_packages() {
     echo -e "\nAdding packages"
     asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git
     asdf plugin add yarn
+    asdf plugin add postgres
     echo -e "\nAdding packages... Done."
+}
+
+is_postgres_version_installed() {
+    local version=$1
+    if asdf list postgres | grep -q "^\s*${version}$"; then
+        return 0 # Installed
+    else
+        return 1 # Not installed
+    fi
 }
 
 install_asdf() {
@@ -75,6 +85,21 @@ install_asdf() {
         echo 'export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"' >> ~/.zshrc
     fi
     echo -e "Adding shims to PATH in .zprofile and .zshrc... Done."
+
+  if [ -z "$(asdf list postgres)" ]; then
+    echo "No PostgreSQL versions are currently installed via asdf. Proceeding with installation."
+
+    # Set environment variables for compilation on M-series Macs and to prevent build issues
+    export MACOSX_DEPLOYMENT_TARGET="$(sw_vers -productVersion)"
+    export MAKELEVEL=0
+
+     asdf install postgres
+
+    unset MACOSX_DEPLOYMENT_TARGET
+    unset MAKELEVEL
+else
+    echo "PostgreSQL versions are already installed via asdf. Skipping installation."
+fi
 
     echo -e "\nInstalling global .tool-versions..."
     asdf install

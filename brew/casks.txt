@@ -5,6 +5,8 @@ slack
 visual-studio-code
 dbeaver-community
 postman
+mongodb-compass
+mongodb-community
 
 # quality of life
 flux

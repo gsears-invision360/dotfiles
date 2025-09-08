@@ -4,5 +4,10 @@ watch
 awscli
 wget
 gpg
+ossp-uuid
+icu4c
+pkg-config
+readline
+zlib
 aws-amplify
 neovim

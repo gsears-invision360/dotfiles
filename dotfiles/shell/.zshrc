@@ -110,5 +110,9 @@ fi
 # Used for anchor auto completion - load /usr/local/share/zsh/site-functions/_anchor
 autoload -U compinit && compinit
 
-export SSL_CERT_FILE="/Users/g.sears/Applications/Homebrew/etc/ca-certificates/cert.pem"
+# export SSL_CERT_FILE="/Users/g.sears/Applications/Homebrew/etc/ca-certificates/cert.pem"
 export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
+export SSL_CERT_FILE="/opt/homebrew/etc/ca-certificates/cert.pem"
+
+# Update MACOSX_DEPLOYMENT_TARGET for asdf postgres builds and other MAKELEVEL=0 builds
+export MACOSX_DEPLOYMENT_TARGET="$(sw_vers -productVersion)"

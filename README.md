@@ -37,6 +37,15 @@ This is a work in progress, so if something fails, try rerunning the script (as 
 
 <br>
 
+## Gotchyas
+
+With `asdf install postgres` or similar, on newer macs, you may need to install from source to prevent errors. This requires adding the following line:
+
+`MAKELEVEL=0`
+
+e.g.
+`asdf install postgres <VERSION> MAKELEVEL=0`
+
 ## Customization
 
 <u>**Custom**</u>

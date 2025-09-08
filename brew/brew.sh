@@ -44,30 +44,26 @@ install_homebrew() {
                          Installing Homebrew
 =======================================================================
 "
-  if [[ ! -d "$HOME/Applications/Homebrew" ]]; then
-    echo "==> Installing to ~/Applications/Homebrew..."
-    export HOMEBREW_CASK_OPTS="--appdir=$HOME/Applications"
-    mkdir -p $HOME/Applications/Homebrew
-    /bin/bash -c "$(curl -L https://github.com/Homebrew/brew/tarball/master | tar xz --strip 1 -C $HOME/Applications/Homebrew)"
-
-    echo "==> Adding Homebrew to PATH..."
-    if ! grep -q 'eval "$(~/Applications/Homebrew/bin/brew shellenv)"' "$HOME/.zprofile" 2>/dev/null; then
-      echo 'eval "$(~/Applications/Homebrew/bin/brew shellenv)"' >> "$HOME/.zprofile"
-    fi
+  if  ! command -v brew >/dev/null 2>&1; then
+    echo "==> Homebrew not found on system... These dotfiles do not auto install homebrew. Check with system admin for access."
+    exit 1
+  fi
+  echo "==> Homebrew installed. Continuing..."
 
     if ! grep -q 'export HOMEBREW_CASK_OPTS="--appdir=~/Applications"' ~/.zprofile 2>/dev/null; then
+      echo "Setting HOMEBREW_CASK_OPTS to install apps to ~/Applications"
       echo 'export HOMEBREW_CASK_OPTS="--appdir=~/Applications"' >> ~/.zprofile
     fi
-    eval "$($HOME/Applications/Homebrew/bin/brew shellenv)"
-  else
-    echo "==> Already installed."
-  fi
+
+    echo "Setting up Homebrew environment..."
+    eval "$(brew shellenv)"
 }
 
 install_homebrew_taps() {
   echo -e "Tapping to homebrew taps...\n"§
   # Additional taps here: 
   # e.g.
+  brew tap mongodb/brew
   # brew tap microsoft/git
   # brew tap hashicorp/tap
 }
@@ -187,9 +183,9 @@ Setting up Oh My Zsh
 
 # Add cert files from homebrew for OpenSSL using tools like curl, wget, asdf etc
   echo -e "
-====================
-Setting up CA Certs
-===================="
+=============================
+Setting up CA Certs in .zshrc
+============================="
 
   CERT=$(find "$(brew --prefix)" -type f -name cert.pem | head -n1)
   export SSL_CERT_FILE="$CERT"
